@@ -2,7 +2,7 @@ FROM openjdk:23-jdk-slim
 
 WORKDIR /backend
 
-RUN ls ./spring.backend/target
+RUN ls -l ./spring.backend/target
 COPY ./spring.backend/target/portfolio.ecommerce.backend.jar backend.jar
 
 EXPOSE 8005
