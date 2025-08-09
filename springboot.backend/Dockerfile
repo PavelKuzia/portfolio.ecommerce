@@ -2,7 +2,7 @@ FROM openjdk:23-jdk-slim
 
 WORKDIR /backend
 
-COPY spring.backend/target/portfolio.ecommerce.backend.jar backend.jar
+COPY springboot.backend/target/portfolio.ecommerce.backend.jar backend.jar
 
 EXPOSE 8005
 
