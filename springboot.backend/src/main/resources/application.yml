@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: ecommerce_app
+
+  profiles:
+    active: prod
+
+  main:
+    banner-mode: off
+  data:
+    rest:
+      base-path: /api
+      detection-strategy: ANNOTATED
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    root: error
+
+security:
+  jwt:
+    secret-key: 5fc506a43e81c164fd405f92df298c6867160aeb9b72fc0d58a65cc8e7e7e530
+    expiration-time: 3600000
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce?currentSchema=full-stack-ecommerce
+    username: postgres
+    password: ecommerce
+
+  server:
+    port: ${ENV_BACKEND_PORT}
+
+allowed:
+  origins: http://localhost:4200
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:postgresql://${ENV_AWS_RDS_ENDPOINT}:${ENV_PORT_RDS}/${ENV_DB_NAME}
+    username: ${ENV_USERNAME_RDS}
+    password: ${ENV_PASSWORD_RDS}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: ${ENV_BACKEND_PORT}
+
+allowed:
+  origins: ${ANGULAR_URL}:${ANGULAR_PORT}
+
