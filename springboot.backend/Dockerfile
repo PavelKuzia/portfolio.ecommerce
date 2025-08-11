@@ -3,9 +3,10 @@ FROM maven:3.9.9-eclipse-temurin-23 AS build
 
 WORKDIR /app
 
-COPY pom.xml .
-RUN `echo ls`
-COPY src ./src
+RUN echo "hello"
+
+COPY ./springboot.backend/pom.xml .
+COPY ./springboot.backend/src ./src
 
 RUN mvn clean install -DskipTests -q
 
