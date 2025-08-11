@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  backend:
+    image: pavelkuzia/portfolio.ecommerce.backend.springboot:latest
+    ports:
+      - "8005:8005"
+    networks:
+      - app-network
+
+  frontend:
+    image: pavelkuzia/portfolio.ecommerce.frontend.angular:latest
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,14 @@
+Frontend:
+
+- preload data in angular
+- clear all saved browser data on start
+- Position of control elements (login etc)
+
+Backend:
+
+- why "/health" is protected?
+- how to save numbeer of IPs reaching the App Backend?
+
+DevOps:
+
+- how to copy docker-compose file to EC2 (Linux)
