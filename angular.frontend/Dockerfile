@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION} AS build
 
 WORKDIR /app
 
-COPY ./angular.frontend/package.json package-lock.json ./
+COPY ./angular.frontend/package.json ./angular.frontend/package-lock.json ./
 
 RUN npm ci
 
