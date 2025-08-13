@@ -1,19 +1,16 @@
 <div class="login-status-header">
-  <div *ngIf="isAuthenticated && userFullName" class="login-status-user-info">
+  <div
+    [ngStyle]="{
+      visibility: isAuthenticated && userFullName ? 'visible' : 'hidden'
+    }"
+    class="login-status-user-info"
+  >
     Welcome back {{ userFullName }} !
   </div>
 
-  <button *ngIf="!isAuthenticated" routerLink="/login" class="au-btn-submit">
-    Login
-  </button>
-
-  <button *ngIf="isAuthenticated" (click)="logout()" class="au-btn-submit">
-    Logout
-  </button>
-
   <button
     routerLink="/members"
-    *ngIf="isAuthenticated"
+    [ngStyle]="{ visibility: isAuthenticated ? 'visible' : 'hidden' }"
     class="au-btn-submit"
     style="margin-left: 10px"
   >
@@ -22,10 +19,19 @@
 
   <button
     routerLink="/order-history"
-    *ngIf="isAuthenticated"
+    [ngStyle]="{ visibility: isAuthenticated ? 'visible' : 'hidden' }"
     class="au-btn-submit"
     style="margin-left: 10px; width: 125px"
   >
     Order History
+  </button>
+
+  <button
+    class="au-btn-submit"
+    (click)="log_in_out()"
+    style="margin-left: 10px; width: 100px"
+  >
+    <span *ngIf="!isAuthenticated">Login</span>
+    <span *ngIf="isAuthenticated">Logout</span>
   </button>
 </div>

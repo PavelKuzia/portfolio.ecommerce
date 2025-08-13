@@ -42,9 +42,6 @@ public class DataInitialization implements CommandLineRunner {
 
         productRepo.deleteAll();
         productCategoryRepo.deleteAll();
-        countryRepo.deleteAll();
-        stateRepo.deleteAll();
-
 
         // create ProductCategory objects
         ProductCategory p1 = new ProductCategory("Books");
@@ -173,6 +170,12 @@ public class DataInitialization implements CommandLineRunner {
         productRepo.saveAll(coffeeMugProducts);
         productRepo.saveAll(mousePadProducts);
         productRepo.saveAll(luggageTagProducts);
+
+        System.out.println("Saved products and categories");
+
+        /*
+        countryRepo.deleteAll();
+        stateRepo.deleteAll();
 
         Country c1 = new Country("BR","Brazil");
         Country c2 = new Country("CA","Canada");
@@ -414,7 +417,7 @@ public class DataInitialization implements CommandLineRunner {
         states.add(new State("Zonguldak", c5));
 
         stateRepo.saveAll(states);
-
+        */
         System.out.println("All data has been initialized");
     }
 }

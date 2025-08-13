@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../common/product';
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
@@ -11,9 +11,8 @@ import { CartItem } from '../../common/cart-item';
   selector: 'app-product-list',
   imports: [NgFor, CurrencyPipe, NgIf, RouterLink, RouterLinkActive, NgbModule],
   templateUrl: './product-list-grid.component.html',
-  styleUrl: './product-list.component.css'
+  styleUrl: './product-list.component.css',
 })
-
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
@@ -23,11 +22,13 @@ export class ProductListComponent implements OnInit {
   pageNumber: number = 1;
   pageSize: number = 10;
   totalElements: number = 0;
-  
-  constructor(private productService: ProductService,
+
+  constructor(
+    private productService: ProductService,
     private route: ActivatedRoute,
-    private cartService: CartService) {
-  }
+    private cartService: CartService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -47,7 +48,6 @@ export class ProductListComponent implements OnInit {
     else this.handleListProducts();
   }
 
-
   onAddToCardHandler(item: Product) {
     let cartItem: CartItem = new CartItem(item);
     this.cartService.addToCart(cartItem);
@@ -66,22 +66,25 @@ export class ProductListComponent implements OnInit {
 
     this.previousCategoryId = this.currentCategoryId;
 
-    this.productService.getProductListPaginate(this.pageNumber - 1, this.pageSize, this.currentCategoryId).subscribe(
-      data => {
+    this.productService
+      .getProductListPaginate(
+        this.pageNumber - 1,
+        this.pageSize,
+        this.currentCategoryId
+      )
+      .subscribe((data) => {
         this.products = data._embedded.products;
         this.pageNumber = data.page.number + 1;
         this.pageSize = data.page.size;
         this.totalElements = data.page.totalElements;
-      }
-    )
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
   handleSearchProducts() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
-    this.productService.searchByKeyword(keyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchByKeyword(keyword).subscribe((data) => {
+      this.products = data;
+    });
   }
 }

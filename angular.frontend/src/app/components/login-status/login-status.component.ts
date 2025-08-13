@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -8,7 +8,7 @@ import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-login-status',
-  imports: [NgIf, RouterLink],
+  imports: [NgIf, RouterLink, NgStyle],
   templateUrl: './login-status.component.html',
   styleUrl: './login-status.component.css',
 })
@@ -36,15 +36,16 @@ export class LoginStatusComponent implements OnInit {
     );
   }
 
-  logout() {
-    this.authenticationService.authenticated$.next(false);
-    this.authenticationService.fullName$.next('');
-    this.storageService.removeItem('token');
-    this.storageService.removeItem('cartItems');
-    this.storageService.removeItem('username');
-    this.storageService.removeItem('email');
-    this.cartService.clearCartItems();
-    this.isAuthenticated = false;
-    this.router.navigate(['/products']);
+  log_in_out() {
+    if (this.isAuthenticated) {
+      this.authenticationService.fullName$.next('');
+      this.authenticationService.authenticated$.next(false);
+      this.storageService.cleanStorage();
+      this.cartService.clearCartItems();
+      this.isAuthenticated = false;
+      this.router.navigate(['/products']);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

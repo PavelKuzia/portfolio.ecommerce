@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Product")
 @Data
+@SequenceGenerator(name="seq", initialValue=1)
 public class Product {
     public Product() {}
 
@@ -26,7 +27,7 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 

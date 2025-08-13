@@ -19,4 +19,11 @@ export class StorageService {
   removeItem(key: string): void {
     this.storage.removeItem(key);
   }
+
+  cleanStorage(): void {
+    this.removeItem('token');
+    this.removeItem('email');
+    this.removeItem('cartItems');
+    this.removeItem('username');
+  }
 }

@@ -6,6 +6,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import { environment } from '../environments/environment';
+import { StorageService } from './services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -22,5 +23,9 @@ import { environment } from '../environments/environment';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  constructor(private storageService: StorageService) {
+    this.storageService.cleanStorage();
+  }
+
   title = 'angular-ecommerce';
 }

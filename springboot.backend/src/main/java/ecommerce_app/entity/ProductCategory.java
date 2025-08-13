@@ -9,11 +9,12 @@ import java.util.Set;
 @Table(name = "product_category")
 @Getter
 @Setter
+@SequenceGenerator(name="seq", initialValue=1)
 public class ProductCategory {
     public ProductCategory() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 
