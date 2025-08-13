@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION} AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY ./angular.frontend/package.json package-lock.json ./
 
 RUN npm ci
 
@@ -17,5 +17,5 @@ RUN ng build --configuration production
 
 FROM nginx:${NGINX_VERSION}
 EXPOSE 80
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./angular.frontend/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/angular-ecommerce/browser /usr/share/nginx/html
