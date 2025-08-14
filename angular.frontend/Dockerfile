@@ -12,7 +12,7 @@ RUN npm ci
 COPY . .
 
 # RUN npm install -g @angular/cli@19.0.7
-RUN npm run build --configuration production
+RUN npm run build
 
 
 FROM nginx:${NGINX_VERSION}
