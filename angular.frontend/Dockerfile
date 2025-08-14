@@ -1,5 +1,5 @@
-ARG NODE_VERSION=23.2.0-alpine
-ARG NGINX_VERSION=alpine
+ARG NODE_VERSION=22.14.0-alpine
+ARG NGINX_VERSION=alpine3.21
 
 FROM node:${NODE_VERSION} AS build
 
@@ -11,7 +11,7 @@ RUN npm ci
 
 COPY . .
 
-RUN npm install -g @angular/cli@19.0.7
+# RUN npm install -g @angular/cli@19.0.7
 RUN npm run build --configuration production
 
 
