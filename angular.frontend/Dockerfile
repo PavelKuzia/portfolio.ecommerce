@@ -6,7 +6,7 @@ FROM node:${NODE_VERSION} AS build
 WORKDIR /app
 
 # FOR RUNNING IN ROOT
-COPY ./angular.frontend/package.json ./angular.frontend/package-lock.json ./
+COPY . .
 
 # FOR RUNNING IN FRONTEND
 # COPY package.json package-lock.json ./
