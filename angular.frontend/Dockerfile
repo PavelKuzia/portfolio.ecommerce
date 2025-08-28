@@ -6,14 +6,14 @@ FROM node:${NODE_VERSION} AS build
 WORKDIR /app
 
 # FOR RUNNING IN ROOT
-COPY ./angular.frontend/* ./angular.frontend/* ./
+COPY ./angular.frontend/ ./
 
 # FOR RUNNING IN FRONTEND
 # COPY package.json package-lock.json ./
 
 RUN npm install
 
-# COPY . .
+COPY . .
 
 RUN npm install -g @angular/cli@19.0.7
 RUN ng build --configuration production
