@@ -5,8 +5,8 @@ WORKDIR /app
 
 RUN echo "hello"
 
-COPY ./springboot.backend/pom.xml .
-COPY ./springboot.backend/src ./src
+COPY ./pom.xml .
+COPY ./src ./src
 
 RUN mvn clean install -DskipTests -q
 
