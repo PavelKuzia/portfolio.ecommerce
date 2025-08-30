@@ -1,4 +1,4 @@
-name: Java CI/CD with Maven
+name: Build Backend / Frontend images -> push to Docker Hub -> copy docker compose file to EC2 -> run on EC2 instance
 
 on:
   push:
@@ -49,7 +49,7 @@ jobs:
       - name: Copy docker compose file to EC2
         uses: appleboy/scp-action@v1
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ secrets.PUBLIC_EC2_HOST_IP }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           port: 22
