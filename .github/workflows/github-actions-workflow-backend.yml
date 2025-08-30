@@ -42,6 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: starting copy job
+        run: echo "Copy Job has been started"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Copy docker compose file to EC2
