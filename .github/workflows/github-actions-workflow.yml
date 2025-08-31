@@ -1,0 +1,85 @@
+name: Build Backend / Frontend images -> push to Docker Hub -> copy docker compose file to EC2 -> run on EC2 instance
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push Spring Boot Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./springboot.backend/Dockerfile.prod
+          push: true
+          build-args: |
+            ENV_PASSWORD_RDS=${{ secrets.PASSWORD_RDS }}
+            ENV_USERNAME_RDS=${{ secrets.USERNAME_RDS }}
+            ENV_AWS_RDS_ENDPOINT=${{ secrets.AWS_RDS_ENDPOINT }}
+          tags: pavelkuzia/portfolio.ecommerce.backend.springboot:latest
+      - name: Build and push Angular Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./angular.frontend/Dockerfile.prod
+          push: true
+          tags: pavelkuzia/portfolio.ecommerce.frontend.angular:latest
+      - name: congratulations on finishing successfully
+        run: echo "Finished pushing new images to Docker Hub"
+
+  copy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: starting copy job
+        run: echo "Copy Job has been started"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Copy docker compose file to EC2
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.PUBLIC_EC2_HOST_IP }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          port: 22
+          source: "./docker-compose-prod.yml"
+          target: "/home/ec2-user/"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, copy]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          HOST: ${{ secrets.PUBLIC_EC2_HOST_IP }}
+          USER: ${{ secrets.EC2_USER }}
+        run: |
+          echo "Establishing connection to EC2 instance"
+          echo "$PRIVATE_KEY" > github-ec2.pem && chmod 600 github-ec2.pem 
+          ssh -o StrictHostKeyChecking=no -i github-ec2.pem ${USER}@${HOST} << 'EOF'
+          echo "Successfully connected to EC2 instance!"
+          echo "Current directory: $(pwd)"
+          echo "Listing home directory:"
+          ls
+          echo "Showing running containers"
+          sudo docker ps
+          echo "Stopping all containers"
+          sudo docker stop $(docker ps -a -q)
+          echo "Removing all containers"
+          sudo docker rm $(docker ps -a -q)
+          echo "Running docker compose on previously uploaded images"
+          docker compose -f docker-compose-prod.yml  up -d --build
+          echo "Pipeline has finished successfully"
