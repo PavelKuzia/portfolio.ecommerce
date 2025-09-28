@@ -1,41 +1,43 @@
-<div class="page-wrapper">
-  <aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-      <a routerLink="/products">
-        <img src="assets/images/shop-logo.png" alt="logo" class="img-responsive" width="50">
+<div class="flex flex-col min-h-screen">
+  <!-- header -->
+  <div class="flex flex-row bg-[#FDFBD4]">
+    <div class="w-[12rem] m-1">
+      <a routerLink="/products" class="flex justify-center">
+        <img src="assets/images/shop-logo.png" alt="logo" class="w-[4rem]" />
       </a>
     </div>
-    <app-product-category-menu />
-  </aside>
 
+    <div class="flex flex-row justify-between w-full h-20">
+      <app-search class="ml-2.5" />
+      <div class="flex items-center space-x-5">
+        <app-login-status />
 
-  <div class="page-container">
-    <header class="header-desktop">
-      <div class="section-content section-content-p30">
-        <div class="container-fluid">
-          <div class="header-wrap">
-            
-            <app-search />
-            
-            <app-login-status />
-            
-            <app-cart-status />
-            
-          </div>
-          <div class="account-wrap"></div>
-        </div>
+        <app-cart-status />
       </div>
-    </header>
+    </div>
+  </div>
 
-    <router-outlet />
-    
+  <!-- main content -->
+
+  <div class="flex flex-row flex-1">
+    <div
+      class="w-[12rem] text-center flex-shrink-0 bg-[#ffffff] m-0.5 border-r-[2.5px] border-[#a8a5a5] border-opacity-30 pr-2.5 pl-2.5"
+    >
+      <app-product-category-menu />
+    </div>
+
+    <div class="flex justify-center w-full mb-2.5">
+      <router-outlet />
+    </div>
+  </div>
+
+  <!-- footer -->
+
+  <div
+    class="w-full mx-auto p-3.5 flex flex-row gap-10 justify-center items-center bg-[#FDFBD4]"
+  >
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Help</a>
   </div>
 </div>
-
-<footer>
-  <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Help</a></li>
-  </ul>
-</footer>

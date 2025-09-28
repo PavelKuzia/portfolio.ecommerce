@@ -24,7 +24,5 @@ ENV ENV_PORT_RDS=5432
 ENV ENV_DB_NAME=postgres
 ENV ENV_STAGE=prod
 ENV VERSION=0.0.1
-# ENV ANGULAR_PORT=4200
-# ENV ANGULAR_URL=http://localhost
 
 CMD ["java", "-jar", "backend.jar"]

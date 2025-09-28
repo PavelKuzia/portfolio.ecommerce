@@ -31,8 +31,8 @@ export class AppComponent {
   ngOnInit(): void {
     console.log('🎉 Application has started successfully!');
     environment.production
-      ? console.log('Running in production')
-      : console.log('Running in development');
+      ? console.log('Running in production...')
+      : console.log('Running in development...');
     console.log(`Backend API is ${environment.API_URL}`);
   }
 }

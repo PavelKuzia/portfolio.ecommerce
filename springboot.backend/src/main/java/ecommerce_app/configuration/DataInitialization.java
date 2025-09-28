@@ -14,6 +14,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.parameters.P;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -173,7 +176,6 @@ public class DataInitialization implements CommandLineRunner {
 
         System.out.println("Saved products and categories");
 
-        /*
         countryRepo.deleteAll();
         stateRepo.deleteAll();
 
@@ -417,7 +419,7 @@ public class DataInitialization implements CommandLineRunner {
         states.add(new State("Zonguldak", c5));
 
         stateRepo.saveAll(states);
-        */
+
         System.out.println("All data has been initialized");
     }
 }

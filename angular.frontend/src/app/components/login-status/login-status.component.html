@@ -1,36 +1,25 @@
-<div class="login-status-header">
-  <div
-    [ngStyle]="{
-      visibility: isAuthenticated && userFullName ? 'visible' : 'hidden'
-    }"
-    class="login-status-user-info"
-  >
+<div class="flex items-center">
+  <div [hidden]="!(isAuthenticated && userFullName)">
     Welcome back {{ userFullName }} !
   </div>
 
   <button
     routerLink="/members"
-    [ngStyle]="{ visibility: isAuthenticated ? 'visible' : 'hidden' }"
-    class="au-btn-submit"
-    style="margin-left: 10px"
+    [hidden]="!(isAuthenticated && userFullName)"
+    class="common-button"
   >
     Member
   </button>
 
   <button
+    class="common-button"
     routerLink="/order-history"
-    [ngStyle]="{ visibility: isAuthenticated ? 'visible' : 'hidden' }"
-    class="au-btn-submit"
-    style="margin-left: 10px; width: 125px"
+    [hidden]="!(isAuthenticated && userFullName)"
   >
     Order History
   </button>
 
-  <button
-    class="au-btn-submit"
-    (click)="log_in_out()"
-    style="margin-left: 10px; width: 100px"
-  >
+  <button (click)="log_in_out()" class="common-button">
     <span *ngIf="!isAuthenticated">Login</span>
     <span *ngIf="isAuthenticated">Logout</span>
   </button>

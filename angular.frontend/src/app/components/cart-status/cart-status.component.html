@@ -1,6 +1,19 @@
-<div class="cart-area d-n">
-  <a routerLink="/cart-details" routerLinkActive="active">
-    <div class="total">{{totalSum | currency: 'USD'}}<span>{{totalAmount}}</span> </div> <i class="fa fa-shopping-cart"
-      aria-hidden="true"></i>
+<div class="flex mr-4 items-center justify-center">
+  <a
+    routerLink="/cart-details"
+    routerLinkActive="active"
+    class="flex flex-col !no-underline justify-center"
+  >
+    <img
+      src="assets/images/shopping-cart.png"
+      class="block mx-auto h-10 w-10"
+    />
+    <div class="text-black">
+      {{ totalSum | currency : "USD" : "symbol-narrow" : "1.1" }} {{ " " }}|{{
+        " "
+      }}
+      {{ totalAmount }}
+    </div>
+    <i aria-hidden="true"></i>
   </a>
 </div>

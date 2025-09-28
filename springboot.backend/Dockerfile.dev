@@ -30,7 +30,7 @@ ENV ENV_STAGE=prod
 
 ENV VERSION=0.0.1
 
-ENV ANGULAR_PORT=4200
-ENV ANGULAR_URL=http://localhost
+ENV FRONTEND_PORT=4200
+ENV FRONTEND_URL=http://localhost
 
 CMD ["java", "-jar", "backend.jar"]

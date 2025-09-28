@@ -3,7 +3,7 @@ spring:
     name: ecommerce_app
 
   profiles:
-    active: prod
+    active: ${ENV_STAGE}
 
   main:
     banner-mode: off
@@ -32,15 +32,15 @@ spring:
       on-profile: dev
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ecommerce?currentSchema=full-stack-ecommerce
+    url: jdbc:postgresql://${ENV_DB_URL}:5432/ecommerce?currentSchema=full-stack-ecommerce
     username: postgres
     password: ecommerce
 
-  server:
-    port: ${ENV_BACKEND_PORT}
+server:
+  port: ${ENV_BACKEND_PORT}
 
 allowed:
-  origins: http://localhost:4200
+  origins: ${FRONTEND_URL}:${FRONTEND_PORT}
 
 ---
 spring:
@@ -63,5 +63,5 @@ server:
   port: ${ENV_BACKEND_PORT}
 
 allowed:
-  origins: ${ANGULAR_URL}:${ANGULAR_PORT}
+  origins: ${FRONTEND_URL}:${FRONTEND_PORT}
 

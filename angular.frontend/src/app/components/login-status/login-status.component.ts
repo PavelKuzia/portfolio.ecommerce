@@ -8,7 +8,7 @@ import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-login-status',
-  imports: [NgIf, RouterLink, NgStyle],
+  imports: [NgIf, RouterLink],
   templateUrl: './login-status.component.html',
   styleUrl: './login-status.component.css',
 })
