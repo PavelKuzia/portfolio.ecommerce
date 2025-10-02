@@ -5,6 +5,14 @@ services:
     image: pavelkuzia/portfolio.ecommerce.backend.springboot:latest
     ports:
       - "8005:8005"
+    environment:
+      - ENV_AWS_RDS_ENDPOINT=${ENV_AWS_RDS_ENDPOINT}
+      - ENV_PASSWORD_RDS=${ENV_PASSWORD_RDS}
+      - ENV_USERNAME_RDS=${ENV_USERNAME_RDS}
+      - FRONTEND_URL=${ENV_FRONTEND_URL}
+      - FRONTEND_PORT=${ENV_FRONTEND_PORT}
+      # - ENV_FRONTEND_URL=${ENV_FRONTEND_URL}
+      # - ENV_FRONTEND_PORT=${ENV_FRONTEND_PORT}
     networks:
       - app-network
 

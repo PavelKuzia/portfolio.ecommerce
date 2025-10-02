@@ -43,7 +43,7 @@ server:
   port: ${ENV_BACKEND_PORT}
 
 allowed:
-  origins: ${FRONTEND_URL}:${FRONTEND_PORT}
+  origins: ${ENV_FRONTEND_URL}:${ENV_FRONTEND_PORT}
 
 ---
 spring:
@@ -66,4 +66,4 @@ server:
   port: ${ENV_BACKEND_PORT}
 
 allowed:
-  origins: ${FRONTEND_URL}:${FRONTEND_PORT}
+  origins: ${ENV_FRONTEND_URL}:${ENV_FRONTEND_PORT}
