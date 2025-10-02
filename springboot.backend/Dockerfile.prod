@@ -18,9 +18,17 @@ EXPOSE 8005
 
 ENV ENV_BACKEND_PORT=8005
 
+ENV ENV_AWS_RDS_ENDPOINT=edu-aws-db.cbu6mq86qkdr.eu-north-1.rds.amazonaws.com
+ENV ENV_USERNAME_RDS=postgres
+ENV ENV_PASSWORD_RDS=FmC0cThSogj0n23l8tJE
+ENV ENV_DB_NAME=postgres
+
 ENV ENV_PORT_RDS=5432
 ENV ENV_DB_NAME=postgres
 ENV ENV_STAGE=prod
 ENV VERSION=0.0.1
+
+ENV FRONTEND_PORT=4200
+ENV FRONTEND_URL=frontend
 
 CMD ["java", "-jar", "backend.jar"]
