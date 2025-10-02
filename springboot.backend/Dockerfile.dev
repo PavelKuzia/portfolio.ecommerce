@@ -1,16 +1,15 @@
 # build jar file #
-FROM maven:3.9.9-eclipse-temurin-23 AS build
+FROM maven:3.9.9-amazoncorretto-23-alpine AS build
 
 WORKDIR /app
-
-RUN echo "hello"
 
 COPY ./pom.xml .
 COPY ./src ./src
 
 RUN mvn clean install -DskipTests -q
 
-FROM openjdk:23-jdk
+# FROM eclipse-temurin:23
+FROM openjdk:23-jdk-slim
 
 WORKDIR /app
 

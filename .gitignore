@@ -2,4 +2,5 @@ docker-compose-dev.yml
 todo
 .github/workflows-alternative
 db/
-docker-commands-dev.sh
+docker-commands-dev.bat
+git-push-prod.bat

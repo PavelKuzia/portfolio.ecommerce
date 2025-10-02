@@ -81,5 +81,6 @@ jobs:
           echo "Removing all containers"
           sudo docker rm $(docker ps -a -q)
           echo "Running docker compose on previously uploaded images"
-          docker compose up -f docker-compose-prod.yml -d --build
+          docker compose -f docker-compose-prod.yml build
+          docker compose -f docker-compose-prod.yml up -d
           echo "Pipeline has finished successfully"

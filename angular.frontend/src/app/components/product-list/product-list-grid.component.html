@@ -36,14 +36,14 @@
     <!-- if not products are there just inform -->
     <div
       *ngIf="products?.length === 0"
-      class="alert alert-warning col-md-12"
+      class="alert alert-warning col-md-12 mt-3.5"
       role="alert"
     >
       <p>no products found.</p>
     </div>
   </div>
 
-  <div class="mt-4">
+  <div class="mt-4" *ngIf="products?.length != 0">
     <div class="">
       <ngb-pagination
         [collectionSize]="totalElements"
@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div>
+  <div *ngIf="products?.length != 0">
     <span class="mr-3">Page Size</span>
     <select
       #PageSelect

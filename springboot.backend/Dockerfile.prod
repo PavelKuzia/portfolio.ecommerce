@@ -3,14 +3,12 @@ FROM maven:3.9.9-eclipse-temurin-23 AS build
 
 WORKDIR /app
 
-RUN echo "hello"
-
 COPY ./springboot.backend/pom.xml .
 COPY ./springboot.backend/src ./src
 
 RUN mvn clean install -DskipTests -q
 
-FROM openjdk:23-jdk
+FROM openjdk:23-jdk-slim
 
 WORKDIR /app
 

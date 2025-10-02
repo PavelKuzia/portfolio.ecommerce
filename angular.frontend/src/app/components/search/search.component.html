@@ -6,7 +6,10 @@
     (keyup.enter)="doSearch(input.value)"
     class="p-3 border-1 border-blue-800 rounded-[30px] m-2 bg-white"
   />
-  <button (click)="doSearch(input.value)" class="common-button w-[8rem]">
+  <button
+    (click)="doSearch(input.value)"
+    class="hidden min-[720px]:inline-block common-button w-[8rem]"
+  >
     Search
   </button>
 </div>
