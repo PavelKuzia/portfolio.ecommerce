@@ -9,11 +9,11 @@ services:
       - ENV_AWS_RDS_ENDPOINT=${ENV_AWS_RDS_ENDPOINT}
       - ENV_PASSWORD_RDS=${ENV_PASSWORD_RDS}
       - ENV_USERNAME_RDS=${ENV_USERNAME_RDS}
-      - FRONTEND_URL=${ENV_FRONTEND_URL}
-      - FRONTEND_PORT=${ENV_FRONTEND_PORT}
+      # - FRONTEND_URL=${ENV_FRONTEND_URL}
+      # - FRONTEND_PORT=${ENV_FRONTEND_PORT}
       - ENV_STAGE=prod
-      # - ENV_FRONTEND_URL=${ENV_FRONTEND_URL}
-      # - ENV_FRONTEND_PORT=${ENV_FRONTEND_PORT}
+      - ENV_FRONTEND_URL=${ENV_FRONTEND_URL}
+      - ENV_FRONTEND_PORT=${ENV_FRONTEND_PORT}
     networks:
       - app-network
 
@@ -21,6 +21,8 @@ services:
     image: pavelkuzia/portfolio.ecommerce.frontend.angular:latest
     ports:
       - "4200:80"
+    environment:
+      - API_URL=${API_URL}
     depends_on:
       - backend
     networks:
