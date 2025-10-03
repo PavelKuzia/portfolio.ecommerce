@@ -93,6 +93,8 @@ jobs:
           export ENV_FRONTEND_PORT=4200
           export ENV_FRONTEND_URL=frontend
 
+          export API_URL=backend
+
           echo "Running docker compose on previously uploaded images"
           docker-compose -f docker-compose-prod.yml build
           docker-compose -f docker-compose-prod.yml up -d
