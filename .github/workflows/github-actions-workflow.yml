@@ -34,6 +34,8 @@ jobs:
           context: .
           file: ./angular.frontend/Dockerfile.prod
           push: true
+          build-args: |
+            API_URL=backend:8005
           tags: pavelkuzia/portfolio.ecommerce.frontend.angular:latest
       - name: congratulations on finishing successfully
         run: echo "Finished pushing new images to Docker Hub"
@@ -96,6 +98,6 @@ jobs:
           export API_URL=backend
 
           echo "Running docker compose on previously uploaded images"
-          docker-compose -f docker-compose-prod.yml build
+          docker-compose -f docker-compose-prod.yml build --no-cache
           docker-compose -f docker-compose-prod.yml up -d
           echo "Pipeline has finished successfully"

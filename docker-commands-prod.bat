@@ -2,6 +2,10 @@ echo "--- Starting Docker Command Sequence ---"
 
 docker compose -f docker-compose-prod.yml down 
 
+docker pull pavelkuzia/portfolio.ecommerce.backend.springboot:latest
+
+docker pull pavelkuzia/portfolio.ecommerce.frontend.springboot:latest
+
 @REM docker compose -f docker-compose-prod.yml build --no-cache
 
 set ENV_AWS_RDS_ENDPOINT=edu-aws-db.cbu6mq86qkdr.eu-north-1.rds.amazonaws.com
