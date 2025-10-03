@@ -86,7 +86,8 @@ jobs:
           sudo docker rm $(docker ps -a -q)
 
           echo "Setting Enviromental variables"
-          export ENV_AWS_RDS_ENDPOINT=$PRIVAENV_AWS_RDS_ENDPOINTTE_KEY
+          echo "PostgresSQL URL $ENV_AWS_RDS_ENDPOINT"
+          export ENV_AWS_RDS_ENDPOINT=$ENV_AWS_RDS_ENDPOINT
           export ENV_USERNAME_RDS=$ENV_USERNAME_RDS
           export ENV_PASSWORD_RDS=$ENV_PASSWORD_RDS
           export ENV_FRONTEND_PORT=4200
