@@ -91,9 +91,7 @@ jobs:
           export ENV_USERNAME_RDS=$ENV_USERNAME_RDS
           export ENV_PASSWORD_RDS=$ENV_PASSWORD_RDS
           export ENV_FRONTEND_PORT=4200
-          export ENV_FRONTEND_URL=frontend
-
-          export API_URL=backend
+          export ENV_FRONTEND_URL=http://frontend
 
           echo "Running docker compose on previously uploaded images"
           docker-compose -f docker-compose-prod.yml build --no-cache
