@@ -92,7 +92,7 @@ jobs:
           export ENV_PASSWORD_RDS=$ENV_PASSWORD_RDS
           export ENV_FRONTEND_PORT=4200
           export ENV_FRONTEND_URL=http://frontend
-          
+           
           echo "Pulling freshly generated images"
           docker pull pavelkuzia/portfolio.ecommerce.backend.springboot:latest
           docker pull pavelkuzia/portfolio.ecommerce.frontend.springboot:latest
