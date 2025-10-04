@@ -95,7 +95,7 @@ jobs:
            
           echo "Pulling freshly generated images"
           docker pull pavelkuzia/portfolio.ecommerce.backend.springboot:latest
-          docker pull pavelkuzia/portfolio.ecommerce.frontend.springboot:latest
+          docker pull pavelkuzia/portfolio.ecommerce.frontend.angular:latest
 
           echo "Running docker compose on previously uploaded images"
           docker-compose -f docker-compose-prod.yml build --no-cache
