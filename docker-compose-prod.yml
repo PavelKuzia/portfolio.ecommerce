@@ -21,8 +21,6 @@ services:
     image: pavelkuzia/portfolio.ecommerce.frontend.angular:latest
     ports:
       - "4200:80"
-    environment:
-      - API_URL=${API_URL}
     depends_on:
       - backend
     networks:
