@@ -7,3 +7,4 @@ docker-commands-local-prod.bat
 docker-commands-prod.bat
 docker-compose-prod-local-dev.yml
 git-push-prod.bat
+docker-compose-prod-new.yml
